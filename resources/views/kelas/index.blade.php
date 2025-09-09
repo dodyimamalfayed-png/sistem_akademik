@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -10,7 +10,7 @@
 
     <a href="{{ route('kelas.create') }}" class="btn btn-primary mb-3">+ Tambah Kelas</a>
 
-    <table class="table table-bordered">
+    <table class="table table-dark">
         <thead>
             <tr>
                 <th>ID</th>

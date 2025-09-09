@@ -1,33 +1,53 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Sistem Akademik</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center" style="height: 100vh;">
 
-@section('content')
-<div class="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
-    <h2 class="text-xl font-bold mb-4">Login</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>Login Sistem Akademik</h4>
+                </div>
+                <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-    @if($errors->any())
-        <div class="bg-red-200 text-red-700 p-2 mb-3 rounded">
-            {{ $errors->first() }}
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required autofocus>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    &copy; {{ date('Y') }} Sistem Akademik
+                </div>
+            </div>
         </div>
-    @endif
-
-    <form action="{{ route('login.post') }}" method="POST">
-        @csrf
-
-        <div class="mb-3">
-            <label for="email" class="block font-medium">Email</label>
-            <input type="email" name="email" id="email" 
-                   class="w-full border p-2 rounded" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="password" class="block font-medium">Password</label>
-            <input type="password" name="password" id="password" 
-                   class="w-full border p-2 rounded" required>
-        </div>
-
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-            Login
-        </button>
-    </form>
+    </div>
 </div>
-@endsection
+
+</body>
+</html>

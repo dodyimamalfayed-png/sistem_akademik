@@ -7,28 +7,34 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function showLogin()
+    public function showLoginForm()
     {
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             $user = Auth::user();
 
-            if ($user->role == 'admin') {
+            if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
-            } elseif ($user->role == 'guru') {
+            } elseif ($user->role === 'guru') {
                 return redirect()->route('guru.dashboard');
-            } elseif ($user->role == 'siswa') {
+            } elseif ($user->role === 'siswa') {
                 return redirect()->route('siswa.dashboard');
             }
         }
 
-        return back()->withErrors(['login' => 'Email atau password salah']);
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)
@@ -36,7 +42,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect()->route('login');
     }
 }

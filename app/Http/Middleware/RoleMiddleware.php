@@ -14,7 +14,7 @@ class RoleMiddleware
         }
 
         return redirect()->route('login')->withErrors([
-            'akses' => 'Tidak punya akses ke halaman ini'
+            'akses' => 'Anda tidak punya akses ke halaman ini'
         ]);
     }
 }

@@ -1,15 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <h2>Detail Mata Pelajaran</h2>
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ $mataPelajaran->nama_mapel }}</h5>
-            <p><strong>ID:</strong> {{ $mataPelajaran->id_mapel }}</p>
-            <a href="{{ route('mata_pelajaran.index') }}" class="btn btn-secondary">Kembali</a>
-        </div>
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><b>ID:</b> {{ $mapel->id_mapel }}</li>
+        <li class="list-group-item"><b>Nama Mata Pelajaran:</b> {{ $mapel->nama_mapel }}</li>
+    </ul>
+
+    <a href="{{ route('mapel.index') }}" class="btn btn-secondary mt-3">Kembali</a>
 </div>
 @endsection
