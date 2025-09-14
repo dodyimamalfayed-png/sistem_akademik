@@ -22,4 +22,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+        // relasi ke tabel siswa
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'user_id', 'id');
+    }
+
+    // kalau ada role guru
+    public function guru()
+    {
+        return $this->hasOne(Guru::class, 'user_id', 'id');
+    }
+
 }

@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 
+@section('title', 'Edit Nilai')
+
 @section('content')
 <div class="container mt-4">
     <h2>Edit Nilai</h2>
 
-    <form action="{{ route('nilai.update', $nilai->id) }}" method="POST">
+    <form action="{{ route('admin.nilai.update', $nilai->id_nilai) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -13,7 +15,7 @@
             <select name="id_siswa" class="form-control" required>
                 @foreach($siswa as $s)
                     <option value="{{ $s->id_siswa }}" {{ $nilai->id_siswa == $s->id_siswa ? 'selected' : '' }}>
-                        {{ $s->nama }}
+                        {{ $s->nama_siswa }}
                     </option>
                 @endforeach
             </select>
@@ -32,11 +34,12 @@
 
         <div class="mb-3">
             <label for="nilai" class="form-label">Nilai</label>
-            <input type="number" name="nilai" class="form-control" value="{{ $nilai->nilai }}" min="0" max="100" required>
+            <input type="number" name="nilai" class="form-control" 
+                   value="{{ $nilai->nilai }}" min="0" max="100" required>
         </div>
 
         <button type="submit" class="btn btn-success">Update</button>
-        <a href="{{ route('nilai.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('admin.nilai.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection

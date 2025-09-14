@@ -9,6 +9,6 @@
         <li class="list-group-item"><b>Nama Mata Pelajaran:</b> {{ $mapel->nama_mapel }}</li>
     </ul>
 
-    <a href="{{ route('mapel.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+    <a href="{{ route('admin.mapel.index') }}" class="btn btn-secondary mt-3">Kembali</a>
 </div>
 @endsection

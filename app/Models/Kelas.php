@@ -8,22 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     protected $table = 'kelas';
-    protected $primaryKey = 'id_kelas';
-
-    protected $fillable = [
-        'nama_kelas',
-        'wali_kelas_id'
-    ];
-
-    // Relasi ke Siswa
-    public function siswa()
+    protected $primaryKey = 'id_kelas'; // <- ini penting
+    public function getRouteKeyName()
     {
-        return $this->hasMany(Siswa::class, 'id_kelas');
+        return 'id_kelas';
     }
 
-    // Relasi ke User (wali kelas)
+
+    protected $fillable = ['nama_kelas', 'wali_kelas_id'];
+
     public function waliKelas()
     {
         return $this->belongsTo(User::class, 'wali_kelas_id');
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'id_kelas');
     }
 }
