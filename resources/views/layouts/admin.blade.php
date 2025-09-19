@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="{{ route('admin.dashboard') }}">
                 <i class="bi bi-speedometer2"></i> Dashboard Admin

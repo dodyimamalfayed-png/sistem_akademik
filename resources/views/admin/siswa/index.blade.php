@@ -13,7 +13,7 @@
     @endif
 
     <table class="table table-bordered">
-        <thead>
+        <thead class="table-dark">
             <tr>
                 <th>NIS</th>
                 <th>Nama</th>
